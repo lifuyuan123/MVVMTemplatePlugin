@@ -1,0 +1,31 @@
+<idea-plugin>
+    <id>com.lfy.mvvmtemplateplugin</id>
+    <name>MVVMTemplatePlugin</name>
+    <vendor>lfy</vendor>
+
+    <depends>org.jetbrains.android</depends>
+    <depends>org.jetbrains.kotlin</depends>
+    <depends>com.intellij.modules.java</depends>
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService
+            serviceImplementation="com.lfy.mvvmtempleplugin.services.MyApplicationService" />
+        <projectService
+            serviceImplementation="com.lfy.mvvmtempleplugin.services.MyProjectService" />
+    </extensions>
+
+    <applicationListeners>
+        <listener class="com.lfy.mvvmtempleplugin.listeners.MyProjectManagerListener"
+            topic="com.intellij.openapi.project.ProjectManagerListener" />
+    </applicationListeners>
+
+    <!--    <extensions defaultExtensionNs="com.android.tools.idea.wizard.template">-->
+    <!--        <wizardTemplateProvider implementation="other.SamplePluginTemplateProviderImpl" />-->
+    <!--    </extensions>-->
+
+
+    <extensions defaultExtensionNs="com.android.tools.idea.wizard.template">
+        <wizardTemplateProvider implementation="mvvm.SamplePluginTemplateProviderImpl" />
+    </extensions>
+</idea-plugin>
