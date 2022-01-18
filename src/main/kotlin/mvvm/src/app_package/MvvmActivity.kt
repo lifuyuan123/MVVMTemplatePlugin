@@ -73,7 +73,8 @@ fun mvvmActivityKt(
         packageName: String,
         pageName: String,
         activityPackageName: String,
-        activityLayoutName: String
+        activityLayoutName: String,
+        needViewModel:Boolean=true
 
 ) = """
 package $activityPackageName
@@ -88,15 +89,14 @@ import ${packageName}.R
 @AndroidEntryPoint
 class ${pageName}Activity : BaseActivity<Activity${pageName}Binding>() {
 
-     private lateinit var viewModel: ${pageName}ViewModel
-    
+     
+    ${if (needViewModel){"private lateinit var viewModel: ${pageName}ViewModel"} else ""}
  
     override fun getLayout() = R.layout.${activityLayoutName}
 
 
-
     override fun initData(savedInstanceState: Bundle?) {
-        viewModel = ViewModelProvider(this).get(${pageName}ViewModel::class.java)
+        ${if (needViewModel){ "viewModel = ViewModelProvider(this).get(${pageName}ViewModel::class.java)"} else ""}
         binding.activity=this
     
     }

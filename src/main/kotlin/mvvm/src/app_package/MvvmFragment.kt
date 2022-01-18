@@ -94,7 +94,8 @@ fun mvvmFragmentKt(
         pageName: String,
         fragmentPackageName: String,
         packageName: String,
-        fragmentLayoutName: String
+        fragmentLayoutName: String,
+        needViewModel:Boolean=true
 ) = """
 package $fragmentPackageName
 
@@ -109,7 +110,7 @@ import ${packageName}.R
 @AndroidEntryPoint
 class ${pageName}Fragment : BaseFragment<Fragment${pageName}Binding>(){
 
-    private lateinit var viewModel: ${pageName}ViewModel
+    ${if (needViewModel){"private lateinit var viewModel: ${pageName}ViewModel"} else ""}
     
     companion object {
         fun newInstance() = ${pageName}Fragment()
@@ -118,7 +119,7 @@ class ${pageName}Fragment : BaseFragment<Fragment${pageName}Binding>(){
     override fun getLayout()=R.layout.${fragmentLayoutName}
     
     override fun initData(savedInstanceState: Bundle?) {
-         viewModel = ViewModelProvider(this).get(${pageName}ViewModel::class.java)
+         ${if (needViewModel){ "viewModel = ViewModelProvider(this).get(${pageName}ViewModel::class.java)"} else ""}
          binding.fragment=this
     }
 }
