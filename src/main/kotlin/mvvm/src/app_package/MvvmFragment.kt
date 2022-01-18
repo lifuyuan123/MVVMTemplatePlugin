@@ -116,9 +116,8 @@ class ${pageName}Fragment : BaseFragment<Fragment${pageName}Binding>(){
     }
     
     override fun getLayout()=R.layout.${fragmentLayoutName}
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    
+    override fun initData(savedInstanceState: Bundle?) {
          viewModel = ViewModelProvider(this).get(${pageName}ViewModel::class.java)
          binding.fragment=this
     }
