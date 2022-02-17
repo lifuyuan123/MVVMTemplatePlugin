@@ -80,23 +80,19 @@ fun mvvmActivityKt(
 package $activityPackageName
 
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
 import ${packageName}.databinding.Activity${pageName}Binding
 import com.jdjinsui.baselibrary.ui.activity.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import ${packageName}.R
+${if (needViewModel){""}else{"import com.jdjinsui.baselibrary.vm.BaseViewModel"}}
 
 @AndroidEntryPoint
-class ${pageName}Activity : BaseActivity<Activity${pageName}Binding>() {
+class ${pageName}Activity : BaseActivity<Activity${pageName}Binding,${if(needViewModel){"${pageName}ViewModel"}else{"BaseViewModel"}}>() {
 
-     
-    ${if (needViewModel){"private lateinit var viewModel: ${pageName}ViewModel"} else ""}
- 
     override fun getLayout() = R.layout.${activityLayoutName}
 
 
     override fun initData(savedInstanceState: Bundle?) {
-        ${if (needViewModel){ "viewModel = ViewModelProvider(this).get(${pageName}ViewModel::class.java)"} else ""}
         binding.activity=this
     
     }

@@ -81,7 +81,7 @@ fun RecipeExecutor.mvvmRecipe(
         if (ktOrJavaExt == "java")
             save(mvvmViewModelJava(viewModelPackageName, "", "", needActivity, needFragment), srcOut.resolve("${pageName}/${pageName}ViewModel.${ktOrJavaExt}"))
         else
-            save(mvvmViewModelKt(viewModelPackageName,pageName), srcOut.resolve("${pageName.toLowerCase()}/${pageName}ViewModel.${ktOrJavaExt}"))
+            save(mvvmViewModelKt(viewModelPackageName,pageName,packageRealName), srcOut.resolve("${pageName.toLowerCase()}/${pageName}ViewModel.${ktOrJavaExt}"))
     }
 
 

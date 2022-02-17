@@ -101,16 +101,14 @@ package $fragmentPackageName
 
 
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
 import ${packageName}.databinding.Fragment${pageName}Binding
 import com.jdjinsui.baselibrary.ui.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import ${packageName}.R
+${if (needViewModel){""}else{"import com.jdjinsui.baselibrary.vm.BaseViewModel"}}
 
 @AndroidEntryPoint
-class ${pageName}Fragment : BaseFragment<Fragment${pageName}Binding>(){
-
-    ${if (needViewModel){"private lateinit var viewModel: ${pageName}ViewModel"} else ""}
+class ${pageName}Fragment : BaseFragment<Fragment${pageName}Binding,${if(needViewModel){"${pageName}ViewModel"}else{"BaseViewModel"}}>(){
     
     companion object {
         fun newInstance() = ${pageName}Fragment()
@@ -119,7 +117,6 @@ class ${pageName}Fragment : BaseFragment<Fragment${pageName}Binding>(){
     override fun getLayout()=R.layout.${fragmentLayoutName}
     
     override fun initData(savedInstanceState: Bundle?) {
-         ${if (needViewModel){ "viewModel = ViewModelProvider(this).get(${pageName}ViewModel::class.java)"} else ""}
          binding.fragment=this
     }
 }

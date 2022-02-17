@@ -55,7 +55,29 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class ${pageName}ViewModel @Inject constructor() : ViewModel(){
+class ${pageName}ViewModel @Inject constructor() : BaseViewModel(){
+
+    @Inject lateinit var repository: ${pageName}Repository
+
+   
+}
+
+"""
+
+fun mvvmViewModelKt(
+        viewModelPackageName: String,
+        pageName: String,
+        packageName:String) = """
+package $viewModelPackageName
+
+
+
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+import ${packageName.replaceAfterLast(".","")}baselibrary.vm.BaseViewModel
+
+@HiltViewModel
+class ${pageName}ViewModel @Inject constructor() : BaseViewModel(){
 
     @Inject lateinit var repository: ${pageName}Repository
 
