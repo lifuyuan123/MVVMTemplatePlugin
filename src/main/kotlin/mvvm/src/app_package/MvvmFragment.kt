@@ -102,7 +102,7 @@ package $fragmentPackageName
 
 import android.os.Bundle
 import ${packageName}.databinding.Fragment${pageName}Binding
-import com.jdjinsui.baselibrary.ui.fragment.BaseFragment
+import com.lfy.baselibrary.ui.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import ${packageName}.R
 ${if (needViewModel){""}else{"import com.jdjinsui.baselibrary.vm.BaseViewModel"}}

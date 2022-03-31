@@ -81,7 +81,7 @@ package $activityPackageName
 
 import android.os.Bundle
 import ${packageName}.databinding.Activity${pageName}Binding
-import com.jdjinsui.baselibrary.ui.activity.BaseActivity
+import com.lfy.baselibrary.ui.activity.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import ${packageName}.R
 ${if (needViewModel){""}else{"import com.jdjinsui.baselibrary.vm.BaseViewModel"}}
