@@ -94,32 +94,29 @@ fun mvvmFragmentKt(
         pageName: String,
         fragmentPackageName: String,
         packageName: String,
-        fragmentLayoutName: String
+        fragmentLayoutName: String,
+        needViewModel:Boolean=true
 ) = """
 package $fragmentPackageName
 
 
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
 import ${packageName}.databinding.Fragment${pageName}Binding
 import com.jdjinsui.baselibrary.ui.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import ${packageName}.R
+${if (needViewModel){""}else{"import com.jdjinsui.baselibrary.vm.BaseViewModel"}}
 
 @AndroidEntryPoint
-class ${pageName}Fragment : BaseFragment<Fragment${pageName}Binding>(){
-
-    private lateinit var viewModel: ${pageName}ViewModel
+class ${pageName}Fragment : BaseFragment<Fragment${pageName}Binding,${if(needViewModel){"${pageName}ViewModel"}else{"BaseViewModel"}}>(){
     
     companion object {
         fun newInstance() = ${pageName}Fragment()
     }
     
     override fun getLayout()=R.layout.${fragmentLayoutName}
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-         viewModel = ViewModelProvider(this).get(${pageName}ViewModel::class.java)
+    
+    override fun initData(savedInstanceState: Bundle?) {
          binding.fragment=this
     }
 }

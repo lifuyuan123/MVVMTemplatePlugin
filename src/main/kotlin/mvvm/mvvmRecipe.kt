@@ -59,14 +59,14 @@ fun RecipeExecutor.mvvmRecipe(
         if (ktOrJavaExt == "java")
             save(mvvmActivityJava(packageRealName, pageName, activityPackageName, activityLayoutName), srcOut.resolve("${pageName.toLowerCase()}/${pageName}Activity.${ktOrJavaExt}"))
         else
-            save(mvvmActivityKt(packageRealName, pageName, activityPackageName,  activityLayoutName), srcOut.resolve("${pageName.toLowerCase()}/${pageName}Activity.${ktOrJavaExt}"))
+            save(mvvmActivityKt(packageRealName, pageName, activityPackageName,  activityLayoutName,needViewModel), srcOut.resolve("${pageName.toLowerCase()}/${pageName}Activity.${ktOrJavaExt}"))
     }
 
     if (needFragment) {
         if (ktOrJavaExt == "java")
             save(mvvmFragmentJava(pageName, fragmentPackageName,  packageRealName, fragmentLayoutName), srcOut.resolve("${pageName.toLowerCase()}/${pageName}Fragment.${ktOrJavaExt}"))
         else
-            save(mvvmFragmentKt(pageName,  fragmentPackageName,  packageRealName, fragmentLayoutName), srcOut.resolve("${pageName.toLowerCase()}/${pageName}Fragment.${ktOrJavaExt}"))
+            save(mvvmFragmentKt(pageName,  fragmentPackageName,  packageRealName, fragmentLayoutName,needViewModel), srcOut.resolve("${pageName.toLowerCase()}/${pageName}Fragment.${ktOrJavaExt}"))
     }
 
     if (needRepository) {
@@ -81,7 +81,7 @@ fun RecipeExecutor.mvvmRecipe(
         if (ktOrJavaExt == "java")
             save(mvvmViewModelJava(viewModelPackageName, "", "", needActivity, needFragment), srcOut.resolve("${pageName}/${pageName}ViewModel.${ktOrJavaExt}"))
         else
-            save(mvvmViewModelKt(viewModelPackageName,pageName), srcOut.resolve("${pageName.toLowerCase()}/${pageName}ViewModel.${ktOrJavaExt}"))
+            save(mvvmViewModelKt(viewModelPackageName,pageName,packageRealName), srcOut.resolve("${pageName.toLowerCase()}/${pageName}ViewModel.${ktOrJavaExt}"))
     }
 
 

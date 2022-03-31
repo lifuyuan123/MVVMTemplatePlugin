@@ -9,6 +9,7 @@ fun manifestTemplateXml(packageName:String,activityPackageName:String,activityCl
             android:configChanges="orientation|screenSize"
             android:label=""
             android:screenOrientation="portrait"
+            android:exported="false"
             android:windowSoftInputMode="stateAlwaysHidden"/>
     </application>
 </manifest>
